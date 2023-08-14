@@ -2,15 +2,18 @@
 
 {% block title %} Profile {% endblock title %}
 
-{% block content %}
-    <section id="profile" class="container"> 
-        <div class="card">
+{% block content %}   
+    <section id="note" class="container"> 
+        <div class="head">
             <h2>{{user.username}}'s Notes</h2>
-            <div>
-                <p>Username: {{user.username}}</p>
-                <p>Email address: {{user.email}}</p>
-                <p>Notes count: {{user.notes.count}}</p>
-            </div>
+            <p></p>
+            <p>Username: {{user.username}}</p>
+            <p>Email address: {{user.email}}</p>
+            <p>Notes count: {{user.notes.count}}</p>
+            
         </div>
+        {% if request.user.is_authenticated %}
+        <a class="btn" href="{% url 'delete' pk=user.id %}">Delete my account</a>
+        {% endif %}
     </section>
 {% endblock content %}

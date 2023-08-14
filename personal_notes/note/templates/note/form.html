@@ -3,14 +3,27 @@
 {% block title %} Create Note {% endblock title %}
 
 {% block content %}
-    <section id="sign-form">
-        <div class="container">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{form}}
-                <button type="submit">{{button}}</button>
-            </form>
-        </div>
-            
+<section id="form" class="note-form">
+    <div class="container">
+        <form action="" method="post">
+            <h2>{{button}} a note</h2>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="fields">
+                {{field.label_tag}}
+                {{field}}
+                <span>{{field.help_text}}</span>
+            </div>
+            {% endfor %}   
+            <button type="submit">{{button}}</button>
+        </form>
+    </div>
     </section>
 {% endblock content %}
+
+{% block js %}
+<script>
+    document.getElementById("id_subject").setAttribute("placeholder","Enter your note's subject ")
+    document.getElementById("id_content").setAttribute("placeholder","Enter your note's content")
+</script>
+{% endblock js %}

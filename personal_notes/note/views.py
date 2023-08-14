@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import View
 from .models import Note
+from django.contrib.auth.models import User
 from .forms import SignupForm, NoteForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -20,6 +21,12 @@ class UserDetail(LoginRequiredMixin, View):
     def get(self,request):
         user=request.user
         return render(request,'note/profile.html',{'user':user})
+
+class DeleteUser(LoginRequiredMixin, View):
+    def get(self,request,pk):
+        user=get_object_or_404(User,pk=pk)
+        user.delete()
+        return redirect(reverse_lazy('signup'))
     
 class NoteList(LoginRequiredMixin, View):
     def get(self,request):

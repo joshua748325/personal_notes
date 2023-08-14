@@ -3,14 +3,29 @@
 {% block title %} Sign up {% endblock title %}
 
 {% block content %}
-    <section id="sign-form">
+    <section id="form">
         <div class="container">
             <form action="" method="post">
+                <h2>Sign up form</h2>
                 {% csrf_token %}
-                {{form}}
+                {% for field in form %}
+                <div class="fields">
+                    {{field.label_tag}}
+                    {{field}}
+                    <span>{{field.help_text}}</span>
+                </div>
+                {% endfor %}   
                 <button type="submit">Sign up</button>
             </form>
         </div>
-            
-    </section>
+    </section>      
 {% endblock content %}
+
+{% block js %}
+<script>
+    document.getElementById('id_username').setAttribute('placeholder','Enter your username')
+    document.getElementById('id_email').setAttribute('placeholder','Enter your email address')
+    document.getElementById('id_password1').setAttribute('placeholder','Enter your password')
+    document.getElementById('id_password2').setAttribute('placeholder','Confirm password')
+</script>
+{% endblock js %}  

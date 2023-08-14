@@ -3,13 +3,22 @@
 {% block title %} Home {% endblock title %}
 
 {% block content %}
-    <section id="note-list" class="container">
-        
-        <div>{{note.subject}} | {{note.created_at}}</div>
-        <div>{{note.content}}</div>
-        <a href="{% url 'note:update_note' pk=note.id %}">Edit note</a>
-        <a href="{% url 'note:delete_note' pk=note.id %}">Delete note</a>
-            
-    </section>
+<section id="note" class="container"> 
+    <div class="detail">
+        <h2>{{note.subject}}</h2>
+        <div class="head">
+            <span>Last modified: {{note.updated_at}}</span>
+            <span>Created at: {{note.created_at}}</span>
+            <span>Subject: {{note.subject}}</span>
+        </div>
+        <div class="options">
+            {%if note.is_starred %} <a href="{% url 'note:star_note' note.id %}?next={{request.path}}"><i class="ri-star-fill options"></i></a>{%else%}<a href="{% url 'note:star_note' note.id %}?next={{request.path}}"><i class="ri-star-line options"></i></a>{% endif %}
+        <a href="{% url 'note:delete_note' pk=note.id %}"><i class="ri-delete-bin-line options"></i></a>
+        </div>
+        <div class="body">
+            <a href="{% url 'note:update_note' pk=note.id %}"><p>{{note.content}}</p></a>
+        </div>
+    </div>
+</section>
 {% endblock content %}
     

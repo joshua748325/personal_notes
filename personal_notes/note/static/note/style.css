@@ -7,6 +7,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    background-color: aliceblue;
+}
+
 .container{
     max-width: 1200px;
     margin: 0 auto;
@@ -16,6 +20,23 @@
 .flex-container{
     display: flex;
     flex-wrap: wrap;
+}
+
+.center{
+    align-items: center;
+    justify-content: center;
+}
+
+.full-h{
+    height: 80vh;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
 }
 
 .flex-item-1{
@@ -78,10 +99,40 @@
 	padding:0 15px;
 }
 
+button{
+    background-color: rgba(100, 100, 100,1);
+    color: aliceblue;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid black;
+}
+
+button:hover{
+    background-color: rgba(100, 100, 100,0.3);
+    color: black;
+}
+
+i.options{
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px black;
+    padding: 4px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
 /* header */
 #header{
     background-color: rgb(100, 100, 100);
     color: aliceblue;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid rgba(100, 100, 100,1);
 }
 
 #header .flex-container{
@@ -95,8 +146,7 @@
 }
 
 #header .logo a:hover{
-    color: black;
-    text-shadow: 2px 2px 2px aliceblue;
+    color: rgba(100, 100, 100,1);
 }
 
 #header nav{
@@ -105,6 +155,7 @@
 }
 
 #header nav a{
+    font-weight: 500;
     padding-right: 30px;
     text-decoration: none;
     font-size: large;
@@ -114,4 +165,125 @@
 
 #header nav a:hover{
     font-size: larger;
+}
+
+/* form */
+
+#form{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0 20px;
+    margin: 20px auto;
+    width: 40%;
+}
+
+#form form{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+#form form .fields{
+    display: flex;
+    flex-direction: column;
+}
+
+#form form .fields label{
+    font-weight: 500;
+}
+
+#form form .fields input,
+#form form .fields textarea{
+    font-weight: 500;
+    margin: 5px 0;
+    padding: 6px 10px;
+}
+
+#form form .fields span{
+    font-weight: 300;
+    font-size: 14px;
+}
+
+#form form .fields span ul{
+    list-style-type: none;
+}
+
+.note-form{
+    width: 90% !important;
+    margin: 20px auto !important;
+}
+
+/* home */
+
+#home table{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 7px;
+    width: 100%;
+}
+
+#home table tr{
+    transition: all 0.1s ease;
+}
+
+#home table tr:hover{
+    outline: 0.3px solid black;
+}
+
+#home table td{
+    padding: 5px;
+}
+
+#home table td.title{
+    width: 50%;
+}
+
+#home table td span{
+    font-size: small;
+}
+
+/* note */
+
+#note{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    position: relative;
+}
+
+#note .head{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#note .options{
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#note .body{
+    background-color: white;
+    outline: 0.5px solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+a.btn{
+    background-color: rgb(205, 2, 2);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-weight: 500;
+}
+
+a.btn:hover{
+    background-color: black;
 }

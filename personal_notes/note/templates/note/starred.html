@@ -3,11 +3,31 @@
 {% block title %} Home {% endblock title %}
 
 {% block content %}
-<section id="starred" class="container"> 
-        <div>
-            {% for note in notes %}
-            <div><a href="{% url 'note:read_note' pk=note.id %}">{{note.subject}}</a> - {{note.updated_at}} - {%if note.is_starred %} <a href="{% url 'note:star_note' note.id %}?next={{request.path}}">Unstar</a> {%else%} <a href="{% url 'note:star_note' note.id %}?next={{request.path}}">Star</a> {% endif %}</div>
-            {% endfor %}
+
+{% if notes %}
+    <section id="home" class="container"> 
+        <div class="list">
+            <table>
+                {% for note in notes %}
+                <tr>
+                    <td class="title"><a href="{% url 'note:read_note' pk=note.id %}"><i class="ri-sticky-note-line"></i> {{note.subject}}</a></td>
+                    <td><span>{{note.created_at}}</span></td>
+                    <td>{%if note.is_starred %} <a href="{% url 'note:star_note' note.id %}?next={{request.path}}"><i class="ri-star-fill options"></i></a>{%else%}<a href="{% url 'note:star_note' note.id %}?next={{request.path}}"><i class="ri-star-line options"></i></a>{% endif %}</td>
+                    <td><a href="{% url 'note:update_note' pk=note.id %}"><i class="ri-edit-box-line options"></i></a></td>
+                    <td><a href="{% url 'note:delete_note' pk=note.id %}"><i class="ri-delete-bin-line options"></i></a></td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </section>
+{% else %}
+    <section id="nothing">
+        <div class="container">
+            <div class="flex-container center full-h">
+                <h2>No starred messages <i class="ri-emotion-sad-line"></i></h2>
+            </div>
+        </div>
+    </section>
+{% endif %}
+    
 {% endblock content %}

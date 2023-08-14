@@ -3,15 +3,28 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
-    <section id="login-form">
-        <div class="container">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{form}}
-                <input type="hidden" name="next" value="{{next}}">
-                <button type="submit">Login</button>
-            </form>
-        </div>
-            
-    </section>
+<section id="form">
+    <div class="container">
+        <form action="" method="post">
+            <h2>Login form</h2>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="fields">
+                {{field.label_tag}}
+                {{field}}
+                <span>{{field.help_text}}</span>
+            </div>
+            {% endfor %}   
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</section>
 {% endblock content %}
+
+{% block js %}
+<script>
+    document.getElementById('id_username').setAttribute('placeholder','Enter your username')
+    document.getElementById('id_password').setAttribute('placeholder','Enter your password')
+</script>
+{% endblock js %}
+    
