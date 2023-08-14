@@ -1,0 +1,13 @@
+{% extends 'note/base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<section id="starred" class="container"> 
+        <div>
+            {% for note in notes %}
+            <div><a href="{% url 'note:read_note' pk=note.id %}">{{note.subject}}</a> - {{note.updated_at}} - {%if note.is_starred %} <a href="{% url 'note:star_note' note.id %}?next={{request.path}}">Unstar</a> {%else%} <a href="{% url 'note:star_note' note.id %}?next={{request.path}}">Star</a> {% endif %}</div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content %}

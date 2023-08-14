@@ -1,0 +1,16 @@
+{% extends 'note/base.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+    <section id="profile" class="container"> 
+        <div class="card">
+            <h2>{{user.username}}'s Notes</h2>
+            <div>
+                <p>Username: {{user.username}}</p>
+                <p>Email address: {{user.email}}</p>
+                <p>Notes count: {{user.notes.count}}</p>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

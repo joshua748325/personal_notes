@@ -1,0 +1,15 @@
+{% extends 'note/base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <section id="note-list" class="container">
+        
+        <div>{{note.subject}} | {{note.created_at}}</div>
+        <div>{{note.content}}</div>
+        <a href="{% url 'note:update_note' pk=note.id %}">Edit note</a>
+        <a href="{% url 'note:delete_note' pk=note.id %}">Delete note</a>
+            
+    </section>
+{% endblock content %}
+    

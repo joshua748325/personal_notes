@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'note/style.css' %}">
+    <title> {% block title %} base {% endblock title %} | personal notes</title>
+</head>
+<body>
+    <section id="header">
+        <div class="container">
+            <div class="flex-container">
+                <div class="flex-item-4">
+                    <div class="logo">
+                        <a href="#"><h1>Personal notes</h1></a>
+                    </div>
+                </div>
+                <div class="flex-item-8">
+                    <nav class="flex-container">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'note:home' %}">Home</a>
+                        <a href="{% url 'note:starred' %}">Starred</a>
+                        <a href="{% url 'profile' %}">Profile</a>
+                        <a href="{% url 'logout' %}?next={% url 'login' %}?next={% url 'note:home' %}">Logout</a>
+                        {% else %}
+                        <a href="{% url 'login' %}?next={% url 'note:home' %}">Login</a>
+                        <a href="{% url 'signup' %}">Sign up</a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block content %} 
+    {% endblock content %}   
+    
+    {% block js %}
+    {% endblock js %}
+</body>
+</html>

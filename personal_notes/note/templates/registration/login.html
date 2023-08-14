@@ -1,0 +1,17 @@
+{% extends 'note/base.html' %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+    <section id="login-form">
+        <div class="container">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <input type="hidden" name="next" value="{{next}}">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+            
+    </section>
+{% endblock content %}

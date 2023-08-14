@@ -1,0 +1,16 @@
+{% extends 'note/base.html' %}
+
+{% block title %} Create Note {% endblock title %}
+
+{% block content %}
+    <section id="sign-form">
+        <div class="container">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit">{{button}}</button>
+            </form>
+        </div>
+            
+    </section>
+{% endblock content %}
