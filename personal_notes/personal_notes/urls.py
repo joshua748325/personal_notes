@@ -6,8 +6,12 @@ from note.views import SignupView, UserDetail
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',TemplateView.as_view(template_name="note/index.html"),name='base'),
-    path('accounts/',include('django.contrib.auth.urls')),
     path('signup/',SignupView.as_view(),name='signup'),
+    path('accounts/',include('django.contrib.auth.urls')),
     path('profile',UserDetail.as_view(),name='profile'),
     path('',include('note.urls')),
 ]
+
+handler403='personal_notes.views.custom_403_view'
+handler404='personal_notes.views.custom_404_view'
+handler500='personal_notes.views.custom_500_view'
